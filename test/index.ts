@@ -71,7 +71,7 @@ describe("AbortController", () => {
             },
         )
 
-        it("should have 5 properties", () => {
+        it("should have 6 properties", () => {
             // IE does not support Set constructor.
             const keys = new Set()
             keys.add("addEventListener")
@@ -79,6 +79,7 @@ describe("AbortController", () => {
             keys.add("dispatchEvent")
             keys.add("aborted")
             keys.add("onabort")
+            keys.add("reason")
 
             for (const key in signal) {
                 assert(keys.has(key), `'${key}' found, but should not have it`)
