@@ -43,6 +43,22 @@ export default class AbortSignal extends EventTarget<Events, EventAttributes> {
         }
         return aborted
     }
+
+    /**
+     * Returns the reason this signal was aborted, if any.
+     */
+    public get reason(): any {
+        return reasons.get(this)
+    }
+
+    /**
+     * Throws the signal's reason if the signal has been aborted.
+     */
+    public throwIfAborted(): void {
+        if (this.aborted) {
+            throw this.reason
+        }
+    }
 }
 defineEventAttribute(AbortSignal.prototype, "abort")
 
@@ -53,18 +69,20 @@ export function createAbortSignal(): AbortSignal {
     const signal = Object.create(AbortSignal.prototype)
     EventTarget.call(signal)
     abortedFlags.set(signal, false)
+    reasons.set(signal, undefined)
     return signal
 }
 
 /**
  * Abort a given signal.
  */
-export function abortSignal(signal: AbortSignal): void {
+export function abortSignal(signal: AbortSignal, reason?: any): void {
     if (abortedFlags.get(signal) !== false) {
         return
     }
 
     abortedFlags.set(signal, true)
+    reasons.set(signal, reason || new Error("AbortError"))
     signal.dispatchEvent<"abort">({ type: "abort" })
 }
 
@@ -73,9 +91,15 @@ export function abortSignal(signal: AbortSignal): void {
  */
 const abortedFlags = new WeakMap<AbortSignal, boolean>()
 
+/**
+ * Reason for each instances.
+ */
+const reasons = new WeakMap<AbortSignal, any>()
+
 // Properties should be enumerable.
 Object.defineProperties(AbortSignal.prototype, {
     aborted: { enumerable: true },
+    reason: { enumerable: true },
 })
 
 // `toString()` should return `"[object AbortSignal]"`

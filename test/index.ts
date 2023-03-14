@@ -94,6 +94,10 @@ describe("AbortController", () => {
             assert(signal.aborted === false)
         })
 
+        it("should have 'reason' property which is undefined by default", () => {
+            assert(signal.reason === undefined)
+        })
+
         it("should have 'onabort' property which is null by default", () => {
             assert(signal.onabort === null)
         })
@@ -147,6 +151,17 @@ describe("AbortController", () => {
 
         it("should throw a TypeError if 'this' is not an AbortController object", () => {
             assert.throws(() => controller.abort.call({}), TypeError)
+        })
+
+        it("should set a default reason to 'signal.reason' property", () => {
+            controller.abort()
+            assert(controller.signal.reason instanceof Error)
+        })
+
+        it("should set provided reason to 'signal.reason' property", () => {
+            const error = new Error("reason")
+            controller.abort(error)
+            assert(controller.signal.reason === error)
         })
     })
 })

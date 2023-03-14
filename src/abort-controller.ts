@@ -22,8 +22,8 @@ export default class AbortController {
     /**
      * Abort and signal to any observers that the associated activity is to be aborted.
      */
-    public abort(): void {
-        abortSignal(getSignal(this))
+    public abort(reason?: any): void {
+        abortSignal(getSignal(this), reason)
     }
 }
 
