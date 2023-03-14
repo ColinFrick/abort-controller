@@ -2,7 +2,7 @@
  * @author Toru Nagashima <https://github.com/mysticatea>
  * See LICENSE file in root directory for full license.
  */
-import assert from "assert"
+import { assert } from "chai"
 import { AbortController, AbortSignal } from "../src/abort-controller"
 import { spy } from "@mysticatea/spy"
 
@@ -163,6 +163,15 @@ describe("AbortController", () => {
             const error = new Error("reason")
             controller.abort(error)
             assert(controller.signal.reason === error)
+        })
+
+        it("should not throw if not aborted", () => {
+            assert.doesNotThrow(() => controller.signal.throwIfAborted())
+        })
+
+        it("should throw if aborted", () => {
+            controller.abort()
+            assert.throws(() => controller.signal.throwIfAborted(), Error)
         })
     })
 })

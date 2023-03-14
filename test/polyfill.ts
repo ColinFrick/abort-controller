@@ -2,7 +2,7 @@
  * @author Toru Nagashima <https://github.com/mysticatea>
  * See LICENSE file in root directory for full license.
  */
-import assert from "assert"
+import { assert } from "chai"
 import "../polyfill"
 
 const IN_BROWSER = typeof window !== "undefined" || typeof self !== "undefined"

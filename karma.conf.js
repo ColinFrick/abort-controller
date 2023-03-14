@@ -9,7 +9,7 @@ const typescript = require("rollup-plugin-typescript")
 
 module.exports = function(config) {
     config.set({
-        browsers: ["Chrome", "Firefox", "IE"],
+        browsers: ["Chromium", "Firefox"],
         files: ["test/index.ts", "test/polyfill.ts"],
         frameworks: ["mocha"],
         mime: {
