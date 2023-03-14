@@ -26,6 +26,20 @@ class AbortSignal extends EventTarget {
         }
         return aborted;
     }
+    /**
+     * Returns the reason this signal was aborted, if any.
+     */
+    get reason() {
+        return reasons.get(this);
+    }
+    /**
+     * Throws the signal's reason if the signal has been aborted.
+     */
+    throwIfAborted() {
+        if (this.aborted) {
+            throw this.reason;
+        }
+    }
 }
 defineEventAttribute(AbortSignal.prototype, "abort");
 /**
@@ -35,25 +49,32 @@ function createAbortSignal() {
     const signal = Object.create(AbortSignal.prototype);
     EventTarget.call(signal);
     abortedFlags.set(signal, false);
+    reasons.set(signal, undefined);
     return signal;
 }
 /**
  * Abort a given signal.
  */
-function abortSignal(signal) {
+function abortSignal(signal, reason) {
     if (abortedFlags.get(signal) !== false) {
         return;
     }
     abortedFlags.set(signal, true);
+    reasons.set(signal, reason || new Error("AbortError"));
     signal.dispatchEvent({ type: "abort" });
 }
 /**
  * Aborted flag for each instances.
  */
 const abortedFlags = new WeakMap();
+/**
+ * Reason for each instances.
+ */
+const reasons = new WeakMap();
 // Properties should be enumerable.
 Object.defineProperties(AbortSignal.prototype, {
     aborted: { enumerable: true },
+    reason: { enumerable: true },
 });
 // `toString()` should return `"[object AbortSignal]"`
 if (typeof Symbol === "function" && typeof Symbol.toStringTag === "symbol") {
@@ -83,8 +104,8 @@ class AbortController {
     /**
      * Abort and signal to any observers that the associated activity is to be aborted.
      */
-    abort() {
-        abortSignal(getSignal(this));
+    abort(reason) {
+        abortSignal(getSignal(this), reason);
     }
 }
 /**

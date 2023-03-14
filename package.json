@@ -1,6 +1,6 @@
 {
   "name": "@colinfrick/abort-controller",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "An implementation of WHATWG AbortController interface.",
   "main": "dist/abort-controller",
   "files": [

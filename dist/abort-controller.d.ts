@@ -18,7 +18,15 @@ declare class AbortSignal extends EventTarget<Events, EventAttributes> {
     /**
      * Returns `true` if this `AbortSignal`"s `AbortController` has signaled to abort, and `false` otherwise.
      */
-    readonly aborted: boolean
+    get aborted(): boolean
+    /**
+     * Returns the reason this signal was aborted, if any.
+     */
+    get reason(): any
+    /**
+     * Throws the signal"s reason if the signal has been aborted.
+     */
+    throwIfAborted(): void
 }
 /**
  * The AbortController.
@@ -32,11 +40,11 @@ declare class AbortController {
     /**
      * Returns the `AbortSignal` object associated with this object.
      */
-    readonly signal: AbortSignal
+    get signal(): AbortSignal
     /**
      * Abort and signal to any observers that the associated activity is to be aborted.
      */
-    abort(): void
+    abort(reason?: any): void
 }
 
 export default AbortController
