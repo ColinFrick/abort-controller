@@ -1,15 +1,15 @@
-# abort-controller
+# @colinfrick/abort-controller
 
-[![npm version](https://img.shields.io/npm/v/abort-controller.svg)](https://www.npmjs.com/package/abort-controller)
-[![Downloads/month](https://img.shields.io/npm/dm/abort-controller.svg)](http://www.npmtrends.com/abort-controller)
-[![Build Status](https://travis-ci.org/mysticatea/abort-controller.svg?branch=master)](https://travis-ci.org/mysticatea/abort-controller)
-[![Coverage Status](https://codecov.io/gh/mysticatea/abort-controller/branch/master/graph/badge.svg)](https://codecov.io/gh/mysticatea/abort-controller)
-[![Dependency Status](https://david-dm.org/mysticatea/abort-controller.svg)](https://david-dm.org/mysticatea/abort-controller)
+[![npm version](https://img.shields.io/npm/v/@colinfrick/abort-controller.svg)](https://www.npmjs.com/package/@colinfrick/abort-controller)
+[![Downloads/month](https://img.shields.io/npm/dm/@colinfrick/abort-controller.svg)](http://www.npmtrends.com/@colinfrick/abort-controller)
+![Build Status](https://github.com/colinfrick/abort-controller/actions/workflows/test.yml/badge.svg)
+[![Coverage Status](https://codecov.io/gh/colinfrick/abort-controller/branch/master/graph/badge.svg)](https://codecov.io/gh/colinfrick/abort-controller)
+[![Dependency Status](https://david-dm.org/colinfrick/abort-controller.svg)](https://david-dm.org/colinfrick/abort-controller)
 
 An implementation of [WHATWG AbortController interface](https://dom.spec.whatwg.org/#interface-abortcontroller).
 
 ```js
-import AbortController from "abort-controller"
+import AbortController from "@colinfrick/abort-controller"
 
 const controller = new AbortController()
 const signal = controller.signal
@@ -28,7 +28,7 @@ controller.abort()
 Use [npm](https://www.npmjs.com/) to install then use a bundler.
 
 ```
-npm install abort-controller
+npm install @colinfrick/abort-controller
 ```
 
 Or download from [`dist` directory](./dist).
@@ -42,9 +42,9 @@ Or download from [`dist` directory](./dist).
 ### Basic
 
 ```js
-import AbortController from "abort-controller"
+import AbortController from "@colinfrick/abort-controller"
 // or
-const AbortController = require("abort-controller")
+const AbortController = require("@colinfrick/abort-controller")
 
 // or UMD version defines a global variable:
 const AbortController = window.AbortControllerShim
@@ -55,12 +55,12 @@ If you wanted to polyfill `AbortController` for IE, use `abort-controller/polyfi
 
 ### Polyfilling
 
-Importing `abort-controller/polyfill` assigns the `AbortController` shim to the `AbortController` global variable if the native implementation was nothing.
+Importing `@colinfrick/abort-controller/polyfill` assigns the `AbortController` shim to the `AbortController` global variable if the native implementation was nothing.
 
 ```js
-import "abort-controller/polyfill"
+import "@colinfrick/abort-controller/polyfill"
 // or
-require("abort-controller/polyfill")
+require("@colinfrick/abort-controller/polyfill")
 ```
 
 ### API
@@ -79,7 +79,7 @@ Notify `abort` event to listeners that the `signal` has.
 
 ## 📰 Changelog
 
-- See [GitHub releases](https://github.com/mysticatea/abort-controller/releases).
+- See [GitHub releases](https://github.com/colinfrick/abort-controller/releases).
 
 ## 🍻 Contributing
 
