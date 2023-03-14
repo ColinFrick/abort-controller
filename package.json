@@ -1,6 +1,6 @@
 {
-  "name": "abort-controller",
-  "version": "3.0.0",
+  "name": "@colinfrick/abort-controller",
+  "version": "4.0.0",
   "description": "An implementation of WHATWG AbortController interface.",
   "main": "dist/abort-controller",
   "files": [
@@ -73,7 +73,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mysticatea/abort-controller.git"
+    "url": "git+https://github.com/ColinFrick/abort-controller.git"
   },
   "keywords": [
     "w3c",
@@ -91,7 +91,7 @@
   "author": "Toru Nagashima (https://github.com/mysticatea)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mysticatea/abort-controller/issues"
+    "url": "https://github.com/ColinFrick/abort-controller/issues"
   },
-  "homepage": "https://github.com/mysticatea/abort-controller#readme"
+  "homepage": "https://github.com/ColinFrick/abort-controller#readme"
 }
